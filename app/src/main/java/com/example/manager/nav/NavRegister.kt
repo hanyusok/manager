@@ -1,5 +1,6 @@
 package com.example.manager.nav
 
+import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import com.example.manager.ui.ProductCreateScreen
@@ -10,6 +11,9 @@ import androidx.navigation.compose.composable
 import com.example.manager.nav.ProductCreateDestination
 import com.example.manager.nav.ProductDetailsDestination
 import com.example.manager.nav.ProductListDestination
+import com.example.manager.vm.ProductCreateViewModel
+import com.example.manager.vm.ProductListViewModel
+
 //import com.example.manager.ui.SignInScreen
 
 fun NavGraphBuilder.navRegistration(navController: NavController) {
@@ -33,7 +37,8 @@ fun NavGraphBuilder.navRegistration(navController: NavController) {
 
     composable(ProductCreateDestination.route) {
         ProductCreateScreen(
-            navController = navController
+            navController = navController,
+            viewModel = ProductCreateViewModel(),
         )
     }
 

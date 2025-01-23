@@ -3,7 +3,7 @@ package com.example.manager.nav
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
 
-object Destination {
+interface Destination {
     val route: String
     val title: String
 }

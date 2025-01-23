@@ -1,7 +1,9 @@
 package com.example.manager.repo
 
+import androidx.lifecycle.ViewModel
 import com.example.manager.model.Product
 import com.example.manager.model.ProductDto
+import javax.inject.Inject
 
 interface ProductRepository {
     suspend fun createProduct(product: Product): Boolean
