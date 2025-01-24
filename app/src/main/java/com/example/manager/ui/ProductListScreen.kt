@@ -31,20 +31,18 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import com.example.manager.R
 import com.example.manager.vm.ProductListViewModel
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.processor.internal.definecomponent.codegen._dagger_hilt_android_components_ViewModelComponent
 
 
 @Composable
@@ -65,14 +63,13 @@ private fun ProductCreateButton(
     }
 }
 
-@JvmOverloads
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProductListScreen (
     modifier: Modifier = Modifier,
     navController: NavController,
-    viewModel: ProductListViewModel = ViewModel()
+    viewModel: ProductListViewModel
 ) {
     val isLoading by viewModel.isLoading.collectAsState(initial = false)
     val swipeRefreshState = rememberSwipeRefreshState(isRefreshing = isLoading)
@@ -187,3 +184,6 @@ fun ProductListScreen (
         }
     }
 }
+
+
+

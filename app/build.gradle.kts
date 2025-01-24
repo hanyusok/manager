@@ -85,6 +85,7 @@ dependencies {
     implementation("androidx.compose.material3:material3:1.2.1")
     implementation("com.google.accompanist:accompanist-swiperefresh:0.24.13-rc")
     implementation("io.coil-kt:coil-compose:2.6.0")
+
 }
 
 kapt {

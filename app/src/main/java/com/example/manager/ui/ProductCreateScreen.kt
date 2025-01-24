@@ -57,7 +57,7 @@ fun ProductCreateScreen(
         )
     }
     ) { padding ->
-        val navigateProductCreateSuccess = viewModel.showSuccessMessage.collectAsState(initial = false).value
+        val navigateProductCreateSuccess = viewModel.navigateProductCreateSuccess.collectAsState(initial = false).value
         val isLoading =
             viewModel.isLoading.collectAsState(initial = false).value
         if (isLoading == true) {

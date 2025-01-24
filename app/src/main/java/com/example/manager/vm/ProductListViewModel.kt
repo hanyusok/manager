@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ProductListViewModel @Inject constructor(
-    private val productRepositoryImpl: ProductRepositoryImpl
+    private val productRepository: ProductRepository
 ) : ViewModel() {
     private val _isLoading = MutableStateFlow(false)
     val isLoading: Flow<Boolean> = _isLoading
@@ -29,7 +29,7 @@ class ProductListViewModel @Inject constructor(
 
     fun getProducts() {
         viewModelScope.launch {
-            val products = productRepositoryImpl.getProducts()
+            val products = productRepository.getProducts()
             _productList.emit(products?.map { it -> it.asDomainModel() })
         }
     }
@@ -40,7 +40,7 @@ class ProductListViewModel @Inject constructor(
             newList.remove(product)
             _productList.emit(newList.toList())
             // Call api to remove
-            productRepositoryImpl.deleteProduct(id = product.id)
+            productRepository.deleteProduct(id = product.id)
             // Then fetch again
             getProducts()
         }

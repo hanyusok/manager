@@ -50,4 +50,11 @@ object SupabaseModule {
     @Singleton
     fun provideStorage(supabaseClient: SupabaseClient) : Storage = supabaseClient.storage
 
+    @Provides
+    @Singleton
+    fun provideProductRepository(
+        auth: Auth,
+        postgrest: Postgrest,
+        realtime: Realtime,
+        storage: Storage
 }

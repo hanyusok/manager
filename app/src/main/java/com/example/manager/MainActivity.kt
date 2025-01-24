@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.ViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -35,9 +36,9 @@ import javax.inject.Inject
 class MainActivity : ComponentActivity() {
     @Inject
     lateinit var supabaseClient: SupabaseClient
-    private val viewModel: ProductListViewModel by viewModels()
+//    private val viewModel: ViewModel
 
-    @OptIn(ExperimentalMaterial3Api::class)`
+    @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        enableEdgeToEdge()
@@ -53,12 +54,11 @@ class MainActivity : ComponentActivity() {
                         startDestination = ProductListDestination.route,
                         Modifier.padding(innerPadding)
                     ) {
-                        navRegistration(navController)
-//                        composable(ProductListDestination.route) {
-//                            ProductListScreen(
-//                                navController = navController
-//                            )
-//                        }
+                        composable(ProductListDestination.route) {
+                            ProductListScreen(
+                                navController = navController
+                            )
+                        }
 
 //                        composable(AuthenticationDestination.route) {
 //                            SignInScreen(
@@ -72,23 +72,23 @@ class MainActivity : ComponentActivity() {
 //                            )
 //                        }
 
-//                        composable(ProductCreateDestination.route) {
-//                            ProductCreateScreen(
-//                                navController = navController
-//                            )
-//                        }
+                        composable(ProductCreateDestination.route) {
+                            ProductCreateScreen(
+                                navController = navController
+                            )
+                        }
 
-//                        composable(
-//                            route = "${ProductDetailsDestination.route}/{${ProductDetailsDestination.productId}}",
-//                            arguments = ProductDetailsDestination.arguments
-//                        ) { navBackStackEntry ->
-//                            val productId =
-//                                navBackStackEntry.arguments?.getString(ProductDetailsDestination.productId)
-//                            ProductDetailsScreen(
-//                                productId = productId,
-//                                navController = navController,
-//                            )
-//                        }
+                        composable(
+                            route = "${ProductDetailsDestination.route}/{${ProductDetailsDestination.productId}}",
+                            arguments = ProductDetailsDestination.arguments
+                        ) { navBackStackEntry ->
+                            val productId =
+                                navBackStackEntry.arguments?.getString(ProductDetailsDestination.productId)
+                            ProductDetailsScreen(
+                                productId = productId,
+                                navController = navController,
+                            )
+                        }
                     }
                 }
             }
